@@ -1,0 +1,16 @@
+{
+  "name": "lexxi-handlebars",
+  "version": "0.1.1",
+  "description": "handlebars helpers for lexxi.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hxgf/lexxi-handlebars.git"
+  },
+  "author": "J Youngblood",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hxgf/lexxi-handlebars/issues"
+  },
+  "homepage": "https://github.com/hxgf/lexxi-handlebars"
+}
