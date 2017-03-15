@@ -1,7 +1,67 @@
+var moment = require('moment');
+
+// btw this is lifted from here:
+// https://github.com/niwinz/moment-tokens/blob/master/moment-tokens.js
+
+function translate_php_format(item) {
+  if (item.charAt(0) === "\\") {
+    return item.replace("\\", "");
+  }
+  switch (item) {
+    case "D":
+      return "ddd";
+    case "l":
+      return "dddd";
+    case "M":
+      return "MMM";
+    case "F":
+      return "MMMM";
+    case "j":
+      return "D";
+    case "m":
+      return "MM";
+    case "A":
+      return "A";
+    case "a":
+      return "a";
+    case "s":
+      return "ss";
+    case "i":
+      return "mm";
+    case "H":
+      return "HH";
+    case "g":
+      return "h";
+    case "h":
+      return "hh";
+    case "w":
+      return "d";
+    case "W":
+      return "ww";
+    case "y":
+      return "YY";
+    case "o":
+    case "Y":
+      return "YYYY";
+    case "O":
+      return "ZZ";
+    case "z":
+      return "DDD";
+    case "d":
+      return "DD";
+    case "n":
+      return "M";
+    case "G":
+      return "H";
+    case "e":
+      return "zz";
+    default:
+      return item;
+  }
+}
+
 
 module.exports = {
-
-  /* -------- HANDLEBARS HELPERS -------- */
 
   // return raw date obj as "m/d/YYYY - h:m am/pm"
   format_timestamp: function(date){
@@ -95,7 +155,11 @@ module.exports = {
     } else {
       return options.inverse(this);
     }
-  }
+  },
 
+  // accepts date object & php date format, returns formatted date string
+  date: function(date_object, format, options){
+    return moment(date_object).format(format.replace(/\\?./g, translate_php_format));
+  }
 
 };
